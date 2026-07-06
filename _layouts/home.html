@@ -6,23 +6,17 @@ layout: default
   <h1 class="page-heading">{{ page.title }}</h1>
 {%- endif -%}
 
-{{ content }}
+{%- assign home_content = content | strip -%}
+{%- if home_content != "" -%}
+  <div class="post-container">
+    <div class="post">
+      {{ content }}
+    </div>
+  </div>
+{%- endif -%}
 
-{%- if site.posts.size > 0 -%}
+{%- if page.show_posts and site.posts.size > 0 -%}
   <ul class="posts">
-    <li class="posts-labelgroup" id="posts-labelgroup">
-      <h1 id="posts-label">posts</h1>
-      {% if site.plainwhite.search %}
-      <div class="search-container">
-        <div class="search-section">
-          <i class="icon-search"></i>
-          <input type="text" name="search" id="searchbar" autocomplete="off" aria-label="search in posts">
-        </div>
-        <div class="search-results" id="search-results" data-placeholder="No Results" style="display: none;"></div>
-      </div>
-      {% endif %}
-    </li>
-
     {%- for post in site.posts -%}
       <li>
         {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}

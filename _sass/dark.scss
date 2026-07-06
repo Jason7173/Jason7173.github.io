@@ -18,6 +18,27 @@
 		color: #ddd;
 	}
 
+	.timeline-date,
+	.publication-year {
+		color: #d7d7dc;
+	}
+
+	.timeline-content h3,
+	.publication-item h3,
+	.publication-item strong {
+		color: #f2f2f4;
+	}
+
+	.timeline-content p,
+	.publication-item p {
+		color: #d7d7dc;
+	}
+
+	.timeline-content a,
+	.publication-item a {
+		color: $dark_link_color;
+	}
+
 	.social [class^="icon-"] {
 		color: $dark_text_color
 	}

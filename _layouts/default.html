@@ -126,6 +126,13 @@
           </li>
         </a>
         {%- endif -%}
+        {%- if site.plainwhite.social_links.google_scholar -%}
+        <a href="{{ site.plainwhite.social_links.google_scholar }}" target="_blank">
+          <li>
+            <img class="google-scholar-icon" src="{{ "/assets/google-scholar.svg" | relative_url }}" alt="Google Scholar" />
+          </li>
+        </a>
+        {%- endif -%}
         {%- if site.plainwhite.social_links.stackoverflow -%}
         <a href="https://stackoverflow.com/users/{{ site.plainwhite.social_links.stackoverflow }}" target="_blank">
           <li>
@@ -134,17 +141,6 @@
         </a>
         {%- endif -%}
       </ul>
-      {%- endif -%}
-      {%- if site.plainwhite.navigation -%}
-      <nav class="navigation about-footer {{condensed_class}}">
-        <ul>
-          {% for link in site.plainwhite.navigation %}
-          <li>
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </nav>
       {%- endif -%}
       <p class="about-footer {{condensed_class}}">&copy;
         {{ "now" | date: "%Y" }}</p>
@@ -163,6 +159,26 @@
       {{ footer }}
     </section>
     <section class="content">
+      {%- if site.plainwhite.navigation -%}
+      <div class="section-menu">
+        <div class="posts-labelgroup" id="posts-labelgroup">
+          <nav class="section-navigation" aria-label="Section navigation">
+            {% for link in site.plainwhite.navigation %}
+            <a {% if link.title == "Posts" %}id="posts-label"{% endif %} href="{{ link.url | relative_url }}">{{ link.title }}</a>
+            {% endfor %}
+          </nav>
+          {% if page.show_posts and site.plainwhite.search %}
+          <div class="search-container">
+            <div class="search-section">
+              <i class="icon-search"></i>
+              <input type="text" name="search" id="searchbar" autocomplete="off" aria-label="search in posts">
+            </div>
+            <div class="search-results" id="search-results" data-placeholder="No Results" style="display: none;"></div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {%- endif -%}
       {{ content }}
     </section>
     <footer class="{{condensed_class}}">
